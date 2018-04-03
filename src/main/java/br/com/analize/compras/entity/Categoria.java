@@ -1,13 +1,14 @@
-package br.com.analize.compras.Entity;
+package br.com.analize.compras.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "TB_CATEGORIA")
-public class Categoria {
+public class Categoria implements Serializable {
 
     @Id
     @Column(name = "CA_ID")
