@@ -12,7 +12,7 @@ public class CategoriaService {
     @Autowired
     private CategoriaRepository categoriaRepository;
 
-    public Categoria buscarCategoriaPorID(Integer id){
+    public Categoria buscarCategoriaPorId(Integer id){
 
         //return categoriaRepository.findOne(id);
         Categoria categoria = categoriaRepository.findOne(id);

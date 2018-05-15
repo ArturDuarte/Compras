@@ -4,7 +4,9 @@ package br.com.analize.compras.resource;
 //um determinado conteudo com o id
 
 import br.com.analize.compras.entity.Categoria;
+import br.com.analize.compras.entity.Cliente;
 import br.com.analize.compras.service.CategoriaService;
+import br.com.analize.compras.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,15 +15,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/categorias")
-public class CategoriaResource {
+@RequestMapping(value = "/clientes")
+public class ClienteResource {
 
     @Autowired
-    private CategoriaService categoriaService;
+    private ClienteService clienteService;
 
     @RequestMapping(method = RequestMethod.GET, path = "/{id}")
-    public ResponseEntity<?> buscarCategoria(@PathVariable("id") Integer id) {
-        Categoria categoria = categoriaService.buscarCategoriaPorId(id);
-        return ResponseEntity.ok().body(categoria);
+    public ResponseEntity<?> buscarCliente(@PathVariable("id") Integer id) {
+        Cliente cliente = clienteService.buscarClientePorId(id);
+        return ResponseEntity.ok().body(cliente);
     }
 }

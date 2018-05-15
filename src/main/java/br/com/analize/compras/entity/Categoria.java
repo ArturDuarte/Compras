@@ -25,27 +25,23 @@ import java.util.Objects;
 */
 
 @Entity
-@Table(name = "TB_CATEGORIA")
-// Cria uma sequencia do id da tabela Categoria
+@Table(name = "tb_categoria")
 @SequenceGenerator(name = "seq_categoria", sequenceName = "seq_categoria")
 public class Categoria implements Serializable {
 
     @Id
-    //Gera no banco um comando de auto increment usando a Sequence criada a cima
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "seq_categoria")
-
-    @Column(name = "CA_ID")
+    @Column(name = "ca_id")
     private Integer id;
 
-    @Column(name = "CA_NOME")
+    @Column(name = "ca_nome")
     private String nome;
 
-    //Associaçoes
-    @JsonManagedReference
+    //Associações
     @ManyToMany(mappedBy = "categorias")
-    private List<Produto> produtos = new ArrayList<>();
+    List<Produto> produtos = new ArrayList<>();
 
-    public Categoria(){
+    public Categoria() {
 
     }
 
@@ -78,7 +74,6 @@ public class Categoria implements Serializable {
         this.produtos = produtos;
     }
 
-    //Utiliza o id da classe para gerar um valor da tabela Hach
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

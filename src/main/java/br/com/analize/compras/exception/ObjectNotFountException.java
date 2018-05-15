@@ -1,6 +1,6 @@
 package br.com.analize.compras.exception;
 
-public class ObjectNotFountException extends RuntimeException{
+public class ObjectNotFountException extends RuntimeException {
 
     public ObjectNotFountException(String msg) {
         super(msg);

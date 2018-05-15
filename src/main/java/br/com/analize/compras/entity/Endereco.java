@@ -1,5 +1,7 @@
 package br.com.analize.compras.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,7 +15,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-@Table(name ="tb_endereco")
+@Table(name = "tb_endereco")
 @SequenceGenerator(name = "seq_endereco", sequenceName = "seq_endereco")
 public class Endereco implements Serializable {
 
@@ -38,39 +40,19 @@ public class Endereco implements Serializable {
     private String cep;
 
     @ManyToOne
-    @JoinColumn(name = "CI_ID")
+    @JoinColumn(name = "ci_id")
     private Cidade cidade;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "cl_id")
     private Cliente cliente;
-
 
     public Endereco(){
 
     }
 
-    public Cidade getCidade() {
-        return cidade;
-    }
-
-    public void setCidade(Cidade cidade) {
-        this.cidade = cidade;
-    }
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public Endereco(Integer id,String logradouro, String numero, String complemento, String bairro, String cep, Cidade cidade, Cliente cliente) {
+    public Endereco(Integer id, String logradouro, String numero, String complemento, String bairro, String cep, Cidade cidade, Cliente cliente) {
         this.id = id;
         this.logradouro = logradouro;
         this.numero = numero;
@@ -79,6 +61,10 @@ public class Endereco implements Serializable {
         this.cep = cep;
         this.cidade = cidade;
         this.cliente = cliente;
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     public void setId(Integer id) {
@@ -123,6 +109,22 @@ public class Endereco implements Serializable {
 
     public void setCep(String cep) {
         this.cep = cep;
+    }
+
+    public Cidade getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(Cidade cidade) {
+        this.cidade = cidade;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     @Override

@@ -1,5 +1,7 @@
 package br.com.analize.compras.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,32 +16,29 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "TB_ESTADO")
-// Cria uma sequencia do id da tabela Estado
+@Table(name = "tb_estado")
 @SequenceGenerator(name = "seq_estado", sequenceName = "seq_estado")
 public class Estado implements Serializable {
 
     @Id
-    //Gera no banco um comando de auto increment usando a Sequence criada a cima
+    @Column(name = "es_id")
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "seq_estado")
-
-    @Column(name = "ES_ID")
     private Integer id;
 
-    @Column(name = "ES_NOME")
+    @Column(name = "es_nome")
     private String nome;
 
-   //deve ser o nome da variavel de cidade
+    @JsonIgnore
     @OneToMany(mappedBy = "estado")
     private List<Cidade> cidades = new ArrayList<>();
 
-    public Estado() {
+    public Estado(){
+
     }
 
-    public Estado(Integer id, String nome ){
+    public Estado(Integer id, String nome) {
         this.id = id;
         this.nome = nome;
-
     }
 
     public Integer getId() {

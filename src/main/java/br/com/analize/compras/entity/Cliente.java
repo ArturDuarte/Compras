@@ -1,12 +1,15 @@
 package br.com.analize.compras.entity;
 
 import br.com.analize.compras.entity.enumeration.TipoClienteEnum;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,9 +25,9 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Table(name ="tb_cliente")
+@Table(name = "tb_cliente")
 @SequenceGenerator(name = "seq_cliente", sequenceName = "seq_cliente")
-public class Cliente implements Serializable {
+public class Cliente implements Serializable{
 
     @Id
     @Column(name = "cl_id")
@@ -40,8 +43,9 @@ public class Cliente implements Serializable {
     @Column(name = "cl_cpf_cnpj")
     private String cpfOuCnpj;
 
-    @Column(name = "cl_tipoCliente")
-    private TipoClienteEnum tifpoCliente;
+    @Column(name = "cl_tipo_cliente")
+    @Enumerated(EnumType.STRING)
+    private TipoClienteEnum tipoCliente;
 
     @ElementCollection
     @CollectionTable(name = "tb_telefone", joinColumns = @JoinColumn(name = "cl_id"))
@@ -50,18 +54,20 @@ public class Cliente implements Serializable {
     @OneToMany(mappedBy = "cliente")
     private List<Endereco> enderecos = new ArrayList<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "cliente")
     private List<Pedido> pedidos = new ArrayList<>();
 
     private Cliente(){
 
     }
-    public Cliente(Integer id, String nome, String email, String cpfOuCnpj, TipoClienteEnum tifpoCliente) {
+
+    public Cliente(Integer id, String nome, String email, String cpfOuCnpj, TipoClienteEnum tipoCliente) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.cpfOuCnpj = cpfOuCnpj;
-        this.tifpoCliente = tifpoCliente;
+        this.tipoCliente = tipoCliente;
     }
 
     public Integer getId() {
@@ -96,12 +102,12 @@ public class Cliente implements Serializable {
         this.cpfOuCnpj = cpfOuCnpj;
     }
 
-    public TipoClienteEnum getTifpoCliente() {
-        return tifpoCliente;
+    public TipoClienteEnum getTipoCliente() {
+        return tipoCliente;
     }
 
-    public void setTifpoCliente(TipoClienteEnum tifpoCliente) {
-        this.tifpoCliente = tifpoCliente;
+    public void setTipoCliente(TipoClienteEnum tipoCliente) {
+        this.tipoCliente = tipoCliente;
     }
 
     public Set<String> getTelefones() {

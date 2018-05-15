@@ -13,26 +13,24 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-@Table(name = "TB_CIDADE")
-// Cria uma sequencia do id da tabela Categoria
+@Table(name = "tb_cidade")
 @SequenceGenerator(name = "seq_cidade", sequenceName = "seq_cidade")
 public class Cidade implements Serializable {
 
     @Id
-    //Gera no banco um comando de auto increment usando a Sequence criada a cima
+    @Column(name = "ci_id")
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "seq_cidade")
-
-    @Column(name = "CI_ID")
     private Integer id;
 
-    @Column(name = "CI_NOME")
+    @Column(name = "ci_nome")
     private String nome;
 
     @ManyToOne
-    @JoinColumn(name = "ES_ID")
+    @JoinColumn(name = "es_id")
     private Estado estado;
 
     public Cidade() {
+
     }
 
     public Cidade(Integer id, String nome, Estado estado) {
