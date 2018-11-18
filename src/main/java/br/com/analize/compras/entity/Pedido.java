@@ -1,6 +1,5 @@
 package br.com.analize.compras.entity;
 
-import br.com.analize.compras.entity.enumeration.ItemPedido;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.CascadeType;

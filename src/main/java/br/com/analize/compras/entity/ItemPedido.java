@@ -1,9 +1,7 @@
-package br.com.analize.compras.entity.enumeration;
+package br.com.analize.compras.entity;
 
 
 
-import br.com.analize.compras.entity.Pedido;
-import br.com.analize.compras.entity.Produto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.EmbeddedId;

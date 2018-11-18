@@ -1,9 +1,6 @@
 package br.com.analize.compras.entity;
 
-import br.com.analize.compras.entity.enumeration.ItemPedido;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import sun.swing.BakedArrayList;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

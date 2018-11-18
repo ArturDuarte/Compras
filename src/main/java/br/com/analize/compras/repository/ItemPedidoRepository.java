@@ -1,7 +1,6 @@
 package br.com.analize.compras.repository;
 
-import br.com.analize.compras.entity.Cliente;
-import br.com.analize.compras.entity.enumeration.ItemPedido;
+import br.com.analize.compras.entity.ItemPedido;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

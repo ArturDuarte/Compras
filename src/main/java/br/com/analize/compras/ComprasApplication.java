@@ -11,7 +11,7 @@ import br.com.analize.compras.entity.PagamentoComCartao;
 import br.com.analize.compras.entity.Pedido;
 import br.com.analize.compras.entity.Produto;
 import br.com.analize.compras.entity.enumeration.EstadoPagamentoEnum;
-import br.com.analize.compras.entity.enumeration.ItemPedido;
+import br.com.analize.compras.entity.ItemPedido;
 import br.com.analize.compras.entity.enumeration.TipoClienteEnum;
 import br.com.analize.compras.repository.CategoriaRepository;
 import br.com.analize.compras.repository.CidadeRepository;

@@ -22,7 +22,7 @@ public class PedidoResource {
     private PedidoService pedidoService;
 
     @RequestMapping(method = RequestMethod.GET, path = "/{id}")
-    public ResponseEntity<?> buscarPedido(@PathVariable("id") Integer id) {
+    public ResponseEntity<Pedido> buscarPedido(@PathVariable("id") Integer id) {
         Pedido categoria = pedidoService.buscarPedidoPorId(id);
         return ResponseEntity.ok().body(categoria);
     }

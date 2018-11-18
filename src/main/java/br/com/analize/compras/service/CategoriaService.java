@@ -22,4 +22,18 @@ public class CategoriaService {
         }
         return categoria;
     }
+
+// metodo insert
+    public Categoria insertCategoria(Categoria categoria){
+        // garante que o abjeto é nulo assim a referencia que o objeto é novo e não uma atualização
+        categoria.setId(null);
+        return categoriaRepository.save(categoria);
+    }
+
+//metodo update
+    public Categoria atualizaCategoria(Categoria categoria) {
+        //caso o id não exista dispara a execao do metodo buscar
+        buscarCategoriaPorId(categoria.getId());
+        return categoriaRepository.save(categoria);
+    }
 }
