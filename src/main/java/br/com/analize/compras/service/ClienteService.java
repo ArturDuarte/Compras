@@ -24,4 +24,18 @@ public class ClienteService {
         }
         return cliente;
     }
+
+    // metodo insert
+    public Cliente insertCliente(Cliente cliente){
+        // garante que o abjeto é nulo assim a referencia que o objeto é novo e não uma atualização
+        cliente.setId(null);
+        return clienteRepository.save(cliente);
+    }
+
+    //metodo update
+    public Cliente atualizaCliente(Cliente cliente) {
+        //caso o id não exista dispara a execao do metodo buscar
+        buscarClientePorId(cliente.getId());
+        return clienteRepository.save(cliente);
+    }
 }
