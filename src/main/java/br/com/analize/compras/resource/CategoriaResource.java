@@ -3,6 +3,7 @@ package br.com.analize.compras.resource;
 //Classe de controle que ira fazer os GETs pegando o objeto todo ou apenas
 //um determinado conteudo com o id
 
+import br.com.analize.compras.DTO.CategoriaDTO;
 import br.com.analize.compras.entity.Categoria;
 import br.com.analize.compras.service.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/categorias")
@@ -48,6 +51,14 @@ public class CategoriaResource {
     public ResponseEntity<Categoria> deletaCategoria(@PathVariable("id") Integer id) {
         categoriaService.deletaCategoria(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @RequestMapping(method = RequestMethod.GET)
+    public ResponseEntity<List<CategoriaDTO>> listaCategorias() {
+        List<Categoria> list = categoriaService.listaCategorias();
+       // converte uma lista de categorias que tem produtos em outra lista  sem produtos
+        List<CategoriaDTO> listDTO = list.stream().map(cat -> new CategoriaDTO(cat)).collect(Collectors.toList());
+        return ResponseEntity.ok().body(listDTO);
     }
 
 }

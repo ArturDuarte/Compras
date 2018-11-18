@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CategoriaService {
 
@@ -49,6 +51,10 @@ public class CategoriaService {
             // se a categoria for deletada incorretamente dispara uma exceção
             throw new DataIntegrityException("Você não pode deletar uma categoria com produtos");
         }
+    }
+
+    public List<Categoria> listaCategorias() {
+        return categoriaRepository.findAll();
     }
 
 }
