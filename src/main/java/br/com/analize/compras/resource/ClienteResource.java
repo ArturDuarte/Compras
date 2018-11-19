@@ -45,4 +45,12 @@ public class ClienteResource {
         cliente = clienteService.atualizaCliente(cliente);
         return  ResponseEntity.noContent().build();
     }
+
+    @RequestMapping(method = RequestMethod.DELETE, path = "/{id}")
+    public ResponseEntity<Cliente> deletaCliente(@PathVariable("id") Integer id) {
+        clienteService.deletaCliente(id);
+        return ResponseEntity.noContent().build();
+    }
+
+
 }
