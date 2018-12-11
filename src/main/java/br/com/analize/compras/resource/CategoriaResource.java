@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/categorias")
-@CrossOrigin("http://localhost:8080")
+@CrossOrigin("*")
 public class CategoriaResource {
 
     @Autowired
@@ -37,10 +37,11 @@ public class CategoriaResource {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Void> insertCategoria(@RequestBody Categoria categoria){
+    public ResponseEntity<Categoria> insertCategoria(@RequestBody Categoria categoria){
         categoria = categoriaService.insertCategoria(categoria);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(categoria.getId()).toUri();
-        return ResponseEntity.created(uri).build();
+//        return ResponseEntity.created(uri).build();
+        return ResponseEntity.ok().body(categoria);
     }
 
     //faz a atualização conforme o id passado

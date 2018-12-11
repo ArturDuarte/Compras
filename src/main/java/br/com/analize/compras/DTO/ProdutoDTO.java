@@ -4,7 +4,7 @@ import br.com.analize.compras.entity.Categoria;
 
 import java.io.Serializable;
 
-public class CategoriaDTO implements Serializable {
+public class ProdutoDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
 //    private Integer id;
@@ -13,10 +13,12 @@ public class CategoriaDTO implements Serializable {
 
     private Integer value;
     private String text;
+    private Double preco;
 
-    public CategoriaDTO(Categoria cat){
+    public ProdutoDTO(Categoria cat){
        value = cat.getId();
        text = cat.getNome();
+
     }
 
 
@@ -40,7 +42,7 @@ public class CategoriaDTO implements Serializable {
         this.text = text;
     }
 
-    public CategoriaDTO(){
+    public ProdutoDTO(){
     }
 
 

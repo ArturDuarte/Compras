@@ -3,9 +3,11 @@ package br.com.analize.compras.service;
 
 
 
+import br.com.analize.compras.entity.Categoria;
 import br.com.analize.compras.entity.Produto;
 import br.com.analize.compras.exception.DataIntegrityException;
 import br.com.analize.compras.exception.ObjectNotFountException;
+import br.com.analize.compras.repository.CategoriaRepository;
 import br.com.analize.compras.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -22,6 +24,9 @@ public class ProdutoService {
     @Autowired
     private ProdutoRepository produtoRepository;
 
+    @Autowired
+    private CategoriaRepository categoriaRepository;
+
     public Produto buscarProdutoPorId(Integer id){
 
         //return produtoRepository.findOne(id);
@@ -34,7 +39,9 @@ public class ProdutoService {
     }
 
     // metodo insert
-    public Produto insertProduto(Produto produto){
+    public Produto insertProduto(Produto produto, Integer idCategoria){
+        Categoria categoria = categoriaRepository.findOne(idCategoria);
+        produto.getCategorias().add(categoria);
         // garante que o abjeto é nulo assim a referencia que o objeto é novo e não uma atualização
         produto.setId(null);
         return produtoRepository.save(produto);

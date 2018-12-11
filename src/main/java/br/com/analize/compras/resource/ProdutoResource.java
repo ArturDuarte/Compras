@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -19,7 +20,7 @@ import java.net.URI;
 
 @RestController
 @RequestMapping(value = "/produtos")
-@CrossOrigin("http://localhost:8080")
+@CrossOrigin("*")
 public class ProdutoResource {
 
     @Autowired
@@ -31,11 +32,9 @@ public class ProdutoResource {
         return ResponseEntity.ok().body(produto);
     }
 
-    @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Void> insertProduto(@RequestBody Produto produto){
-        produto = produtoService.insertProduto(produto);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(produto.getId()).toUri();
-        return ResponseEntity.created(uri).build();
+    @RequestMapping(method = RequestMethod.POST, params = {"idCategoria"})
+    public ResponseEntity<Produto> insertProduto(@RequestBody Produto produto, @RequestParam ("idCategoria") Integer idCategoria){
+        return ResponseEntity.ok().body(produtoService.insertProduto(produto, idCategoria));
     }
 
     //faz a atualização conforme o id passado
@@ -46,7 +45,11 @@ public class ProdutoResource {
         return  ResponseEntity.noContent().build();
     }
 
-
+    @RequestMapping(method = RequestMethod.DELETE, path = "/{id}")
+    public ResponseEntity<Produto> deletaProduto(@PathVariable("id") Integer id) {
+        produtoService.deletaProduto(id);
+        return ResponseEntity.noContent().build();
+    }
 
 
 }
